@@ -9,10 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 export default function Detail() {
   const dispatch = useDispatch();
+  const navigate = useNavigate()
   let isSuccess = true;
   const { id } = useParams();
   const { detail, isLoading } = useSelector((state) => state);
-  const [modal, setModal] = useState(false);
 
   const customStyles = {
     content: {
@@ -38,8 +38,8 @@ export default function Detail() {
       isSuccess = true;
       toast('You Got It !!')
       setTimeout(() => {
-        setModal(true);
-      }, 2000)
+        navigate('/my-pokemon')
+      },1500)
     } else {
       isSuccess = false;
       toast('Failed to catch')

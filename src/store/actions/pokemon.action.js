@@ -1,12 +1,12 @@
 import axios from "axios";
 import { pokemonTypes } from "../constants/pokemon.types";
 
-const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
+const baseUrl = "https://pokeapi.co/api/v2/pokemon";
 const myApi = "http://localhost:5000/pokemon"
 
 export const getDataAllPokemon = () => async (dispatch) => {
   try {
-    const res = await axios.get(baseUrl);
+    const res = await axios.get(`${baseUrl}?limit=100`);
     dispatch({
       type: pokemonTypes.LIST_POKEMON_SUCCESS,
       payload: res.data.results,
@@ -18,7 +18,7 @@ export const getDataAllPokemon = () => async (dispatch) => {
 
 export const getDetailPokemon = (id) => async (dispatch) => {
   try {
-    const res = await axios.get(`${baseUrl + id}`);
+    const res = await axios.get(`${baseUrl +'/'+ id}`);
     console.log(res)
     dispatch({
       type: pokemonTypes.DETAIL_POKEMON_SUCCESS,

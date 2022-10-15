@@ -24,8 +24,9 @@ export default function MyPokemon() {
     if (primeNumber?.isPrimeNumber === true) {
       toast("success", primeNumber?.isPrimeNumber);
       setTimeout(() => {
-        dispatch(realeseMyPokemon(id));
-        dispatch(getDataMyPokemon());
+        dispatch(realeseMyPokemon(id)).then(() => {
+          dispatch(getDataMyPokemon());
+        });
       }, 1000);
     } else {
       toast("failed");
@@ -35,12 +36,18 @@ export default function MyPokemon() {
   const handleRename = (name) => {
     console.log(name);
     dispatch(renameMyPokemon(name));
-    console.log(rename);
-    dispatch(getDataMyPokemon());
+    if (rename.acknowledged === true) {
+      console.log(rename);
+      toast(`Name Changed`);
+      dispatch(getDataMyPokemon());
+    } else {
+      toast("Failed To Rename, Try Again");
+      dispatch(getDataMyPokemon());
+    }
   };
   return (
     <div>
-      <h1>My Pokemon</h1>
+      <h1 className="text-center font-bold text-4xl my-10">My Pokemon</h1>
       <div className="grid grid-cols-5 text-center">
         {listMyPokemon?.map((item, index) => {
           return (
