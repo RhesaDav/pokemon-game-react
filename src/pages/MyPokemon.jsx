@@ -30,20 +30,23 @@ export default function MyPokemon() {
         });
       }, 1000);
     } else {
-      toast(`Failed, ${primeNumber?.number} is not prime number`);
+      primeNumber?.number === undefined
+        ? toast(`Failed, please try again`)
+        : toast(`Failed, ${primeNumber?.number} is not prime number`);
+      // toast(`Failed, ${primeNumber?.number} is not prime number`);
     }
   };
 
   const handleRename = async (name) => {
     console.log(name);
-    await dispatch(renameMyPokemon(name));
     if (rename?.acknowledged === true) {
+      await dispatch(renameMyPokemon(name));
       console.log(rename);
       toast(`Name Changed`);
       dispatch(getDataMyPokemon());
     } else {
       toast("Failed To Rename, Try Again");
-      dispatch(getDataMyPokemon());
+      // dispatch(getDataMyPokemon());
     }
   };
   return (
