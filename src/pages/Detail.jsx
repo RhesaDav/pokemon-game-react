@@ -13,11 +13,11 @@ export default function Detail() {
   const navigate = useNavigate();
   let isSuccess = true;
   const { id } = useParams();
-  const { detail, isLoading, catchPokemon } = useSelector((state) => state);
+  const { detail, isLoading } = useSelector((state) => state);
 
   useEffect(() => {
     dispatch(getDetailPokemon(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const handleCatch = async () => {
     if (isSuccess === false) {

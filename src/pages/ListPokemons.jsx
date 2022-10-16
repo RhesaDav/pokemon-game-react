@@ -16,10 +16,6 @@ export default function ListPokemons() {
     dispatch(getDataAllPokemon());
   }, [dispatch]);
 
-  useEffect(() => {
-    console.log(pokemon);
-  }, []);
-
   return (
     <div>
       <div className="grid grid-cols-5 text-center">

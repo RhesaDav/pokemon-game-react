@@ -23,21 +23,21 @@ export default function MyPokemon() {
     dispatch(generatePrimeNum());
     console.log(primeNumber);
     if (primeNumber?.isPrimeNumber === true) {
-      toast(`success ${primeNumber?.number} is prime number`);
+      toast(`Success, ${primeNumber?.number} is prime number`);
       setTimeout(() => {
         dispatch(realeseMyPokemon(id)).then(() => {
           dispatch(getDataMyPokemon());
         });
       }, 1000);
     } else {
-      toast(`failed ${primeNumber?.number} is not prime number`);
+      toast(`Failed, ${primeNumber?.number} is not prime number`);
     }
   };
 
   const handleRename = async (name) => {
     console.log(name);
     await dispatch(renameMyPokemon(name));
-    if (rename.acknowledged === true) {
+    if (rename?.acknowledged === true) {
       console.log(rename);
       toast(`Name Changed`);
       dispatch(getDataMyPokemon());
@@ -75,13 +75,13 @@ export default function MyPokemon() {
                   </div>
                   <div className="mt-10 w-full flex justify-evenly">
                     <button
-                      className="border-solid border-2 border-sky-500 p-5 mb-5 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
+                      className="w-1/2 border-solid border-2 border-sky-500 p-5 mb-5 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300"
                       onClick={() => handleRelease(item._id)}
                     >
                       RELEASE
                     </button>
                     <button
-                      className="border-solid border-2 border-sky-500 p-5 mb-5 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 "
+                      className="w-1/2 border-solid border-2 border-sky-500 p-3 mb-5 transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300 "
                       onClick={() => handleRename(item.nickname)}
                     >
                       RENAME
