@@ -1,9 +1,8 @@
 import { pokemonTypes } from "../constants/pokemon.types";
 
 const initState = {
-  isLoading: false,
+  isLoading: true,
   pokemon: [],
-  primeNumber: {}
 };
 
 const pokemon = (state = initState, action) => {
@@ -101,6 +100,22 @@ const pokemon = (state = initState, action) => {
         primeNumber: payload,
       };
     case pokemonTypes.PRIME_NUMBER_FAILED:
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case pokemonTypes.CATCH_POKEMON_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case pokemonTypes.CATCH_POKEMON_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        catchPokemon: payload,
+      };
+    case pokemonTypes.CATCH_POKEMON_FAILED:
       return {
         ...state,
         isLoading: false,

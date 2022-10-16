@@ -59,6 +59,7 @@ export const realeseMyPokemon = (id) => async(dispatch) => {
         const res = await axios.delete(`${myApi}/${id}`)
         dispatch({
             type: pokemonTypes.REALESE_POKEMON_SUCCESS,
+            payload: res.data
         })
     } catch (error) {
         
@@ -73,6 +74,18 @@ export const generatePrimeNum = () => async (dispatch) => {
             payload: res.data
         })
     } catch (error) {
-        
+        console.log(error)
     }
+}
+
+export const addToMyPokemon = (data) => async (dispatch) => {
+  try {
+    const res = await axios.post(`${myApi}`, data)
+    dispatch({
+      type: pokemonTypes.CATCH_POKEMON_SUCCESS,
+      payload: res.data
+    })
+  } catch (error) {
+    
+  }
 }
